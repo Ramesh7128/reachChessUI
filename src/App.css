@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik|Alfa+Slab+One|Hind+Vadodara:300,400,500,600|Monoton|Playball');
 @import '~semantic-ui-css/semantic.min.css';
-
 html, body {
   box-sizing: border-box;
   height: 100%;
@@ -13,12 +12,17 @@ a {
 }
 
 .container-section {
-  min-height: 100vh;
-  display: flex;
   flex-direction: column;
-  /* background: #f8f6f6 url(./img/emailbackground3.jpg) no-repeat center / cover; */
 }
 
+.input-error-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.error-section {
+  color: red;
+}
 
 /* header section */
 
@@ -45,14 +49,39 @@ a {
 
 /* content section. */
 
-/* input section */
+
 .input-section {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   padding: 10px;
 }
 
 .fen-submit-button {
   padding: 0 10px;
 }
+
+#chess-board-section {
+  display: flex;
+  flex-direction: column;
+  width: 100vmin;
+  height: 100vmin;
+  margin: 0 auto;
+}
+
+#chess-board-section .fullscreen-button {
+  align-self: flex-end;
+  width: flex-end;
+  padding-bottom: 10px;
+}
+
+#chess-board-section .cg-board-wrap {
+  width: 93vmin !important;
+  height: 93vmin !important;
+  margin: 0 auto;
+}
+
+
+
+
