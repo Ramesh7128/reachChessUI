@@ -21,6 +21,7 @@ a {
 }
 
 .error-section {
+  padding-left: 10px;
   color: red;
 }
 
@@ -65,20 +66,24 @@ a {
 #chess-board-section {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  align-items: center;
 }
 
-/* #chess-board-section .fullscreen-button {
-  align-self: flex-end;
-  width: flex-end;
-  padding-bottom: 10px;
-} */
+.board-back-button {
+  padding: 15px;
+}
 
 #chess-board-section .cg-board-wrap {
   width: 85vmin !important;
   height: 85vmin !important;
   margin: 0 auto;
 }
+
+#chess-board-section .ranks,#chess-board-section .files {
+  display: none;
+}
+
+
 
 
 

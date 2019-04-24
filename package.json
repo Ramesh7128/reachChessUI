@@ -6,8 +6,10 @@
     "chessground": "^7.4.0",
     "fen-validator": "^1.2.0",
     "react": "^16.8.6",
+    "react-browser-hooks": "^2.2.3",
     "react-chessground": "^1.0.0",
     "react-dom": "^16.8.6",
+    "react-full-screen": "^0.2.4",
     "react-scripts": "2.1.8",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.86.0"
