@@ -74,8 +74,8 @@ a {
 }
 
 #chess-board-section .cg-board-wrap {
-  width: 85vmin !important;
-  height: 85vmin !important;
+  width: 80vmin !important;
+  height: 80vmin !important;
   margin: 0 auto;
 }
 
