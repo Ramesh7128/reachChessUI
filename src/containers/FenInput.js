@@ -50,7 +50,7 @@ class FenInput extends Component {
                     </div>
                 </div>
                 <div className='fen-submit-button'>
-                    <Button type='submit' onClick={this.handleSubmit} size='mini' data-id='add' color='orange'>View</Button>
+                    <Button type='submit' onClick={this.handleSubmit} data-id='add' color='orange'>View</Button>
                 </div>
             </div>
         );

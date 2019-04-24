@@ -9,13 +9,22 @@ class Content extends Component {
         super(props);
         this.state = {
             validFEN: '',
+            boardActive: false
         }
         this.handleValidFEN = this.handleValidFEN.bind(this);
+        this.toggleBoardActive = this.toggleBoardActive.bind(this);
+    }
+
+    toggleBoardActive() {
+        this.setState(state => ({
+            boardActive: !state.boardActive
+        }))
     }
 
     handleValidFEN(fenValue) {
         this.setState({
-            validFEN: fenValue
+            validFEN: fenValue,
+            boardActive: true,
         });
 
     }
@@ -23,8 +32,12 @@ class Content extends Component {
         console.log(this.state);
         return (
             <div className='content-section'>
-                <FenInput handleValidFEN={this.handleValidFEN} />
-                <ChessBoard fen={this.state.validFEN}/>
+                {!this.state.boardActive &&
+                    <FenInput handleValidFEN={this.handleValidFEN} />
+                }
+                {this.state.boardActive &&
+                    <ChessBoard toggleBoardActive={this.toggleBoardActive} fen={this.state.validFEN} />
+                }
             </div>
         );
     }

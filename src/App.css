@@ -65,20 +65,18 @@ a {
 #chess-board-section {
   display: flex;
   flex-direction: column;
-  width: 100vmin;
-  height: 100vmin;
   margin: 0 auto;
 }
 
-#chess-board-section .fullscreen-button {
+/* #chess-board-section .fullscreen-button {
   align-self: flex-end;
   width: flex-end;
   padding-bottom: 10px;
-}
+} */
 
 #chess-board-section .cg-board-wrap {
-  width: 93vmin !important;
-  height: 93vmin !important;
+  width: 85vmin !important;
+  height: 85vmin !important;
   margin: 0 auto;
 }
 
