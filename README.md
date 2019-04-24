@@ -13,7 +13,7 @@ npm install
 
 npm start
 
-open browser and fire localhost:3000 to see your react-app running and consuming the backends api from the django development server.
+open browser and fire localhost:3000 to see your react-app running.
 
 ### Production setup.
 
@@ -44,7 +44,6 @@ server {
 
 * React (using create-react-app setup)
 * chessgroundJS (library for rendering the chess board)
-* react-fuzzy-picker for fuzzy search.
 
 ### License
 This project is licensed under the MIT License - see the LICENSE.md file for details
