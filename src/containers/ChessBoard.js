@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-// import { Chessground } from 'chessground';
 import { Icon, Button } from 'semantic-ui-react';
 import Chessground from 'react-chessground';
-import Fullscreen from "react-full-screen";
 
 class ChessBoard extends Component {
     constructor(props) {

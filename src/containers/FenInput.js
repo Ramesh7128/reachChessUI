@@ -7,7 +7,7 @@ class FenInput extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            "fen": 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR_w_KQkq_-',
+            "fen": 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
             "FENerror": ''
         }
         this.handlechange = this.handlechange.bind(this);
@@ -16,9 +16,11 @@ class FenInput extends Component {
     }
 
     handlechange(event) {
-        const defaultFEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR_w_KQkq_-'
+        const defaultFEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
         console.log(event.target.value);
-        (event.target.value) ? this.setState({ fen: event.target.value, FENerror: '' }) : this.setState({ fen: defaultFEN, FENerror: '' });
+        let inputValue = event.target.value.trim();
+        (inputValue) ? this.setState({ fen: event.target.value, FENerror: '' }) : this.setState({ fen: defaultFEN, FENerror: '' });
+        console.log(this.state.fen);
     }
 
     handleEnter(event) {
@@ -28,8 +30,9 @@ class FenInput extends Component {
     }
 
     handleSubmit() {
-        // check if valid fen
-        if (validateFEN(this.state.fen)) {
+        console.log(this.state.fen);
+        const fen = this.state.fen.trim();
+        if (validateFEN(fen)) {
             this.props.handleValidFEN(this.state.fen);
         } else {
             this.setState({
