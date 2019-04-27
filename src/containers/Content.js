@@ -24,7 +24,7 @@ class Content extends Component {
     handleValidFEN(fenValue) {
         this.setState({
             validFEN: fenValue,
-            boardActive: true,
+            boardActive: true
         });
 
     }

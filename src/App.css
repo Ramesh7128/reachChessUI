@@ -81,20 +81,25 @@ input:focus {
   align-items: center;
 }
 
+.board-action-section {
+  display: flex;
+}
+
 .board-back-button {
   padding: 15px;
 }
 
-#chess-board-section .cg-board-wrap {
+#chess-board-layout.cg-board-wrap {
   width: 80vmin !important;
   height: 80vmin !important;
   margin: 0 auto;
 }
 
-#chess-board-section .ranks,#chess-board-section .files {
-  display: none;
+#board-fullscreen-view.cg-board-wrap {
+  width: 80vmin !important;
+  height: 80vmin !important;
+  margin: 0 auto;
 }
-
 
 
 
