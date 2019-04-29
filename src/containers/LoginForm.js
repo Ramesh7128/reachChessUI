@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { authLogin, authLogout, googleAuthLogin } from '../actions/authActions';
 import { connect } from 'react-redux';
-import { Button } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 // import firebase from 'firebase';
 
 
@@ -109,7 +109,8 @@ class LoginForm extends Component {
                     </div>
                     <div id="firebaseui-auth-container">
                     </div>
-                    <Button type='submit' onClick={this.handleGoogleSignIn}>Add Gsign</Button>
+                    <Button type='submit' color="google plus" onClick={this.handleGoogleSignIn}>
+                        <Icon name='google plus' />Google Login</Button>
                     <div className='signup-link'>
                         <Link to="/signup"><div>Signup</div></Link>
                     </div> */}

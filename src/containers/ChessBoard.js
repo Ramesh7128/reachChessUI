@@ -73,7 +73,6 @@ class ChessBoard extends Component {
         if(prevProps.fen!= this.props.fen) {
             this.boardRender(null, 'chess-board-layout');
         }
-
     }
 
     componentWillUnmount() {
