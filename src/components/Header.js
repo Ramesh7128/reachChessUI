@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import strategy from '../strategy.svg';
+import Login from '../containers/Login';
 
 function Header(props) {
     return (
@@ -10,6 +11,7 @@ function Header(props) {
             <div className='logo-text'>
                     <span>ChessLang</span> 
             </div>
+            <Login />
         </div>
     )
 }

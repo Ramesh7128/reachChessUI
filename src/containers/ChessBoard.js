@@ -20,6 +20,7 @@ class ChessBoard extends Component {
     }
 
     boardRender(event, boardMountID) {
+        console.log(this.props.fen, "inside chess board component");
         console.log(event, boardMountID);
         if(boardMountID === 'board-fullscreen-view') {
             var elem = document.getElementById(boardMountID); 
