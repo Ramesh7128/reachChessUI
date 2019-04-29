@@ -10,6 +10,7 @@ import LoginForm from './LoginForm';
 import SignUpForm from './SignupForm';
 import LandingPage from './LandingPage';
 import PrivateRoute from './PrivateRoute';
+import firebase, { auth, provider } from '../firebase'
 import { initialAuth } from "../actions/authActions";
 
 
@@ -19,7 +20,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.initialAuth();
+    this.props.initialAuthentication();
   }
 
   render() {
@@ -29,7 +30,7 @@ class App extends Component {
           <Header />
           <switch>
             <Route exact path={ROUTES.LANDING} component={LandingPage} />
-            <Route exact path={ROUTES.HOME} component={Content} />
+            <Route path={ROUTES.HOME} component={Content} />
             <Route exact path={ROUTES.LOGIN} component={LoginForm} />
             <Route exact path={ROUTES.SIGNUP} component={SignUpForm} />
           </switch>
@@ -47,7 +48,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    initialAuth: () => dispatch(initialAuth())
+    initialAuthentication: () => dispatch(initialAuth())
   }
 
 }

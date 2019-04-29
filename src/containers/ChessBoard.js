@@ -8,15 +8,19 @@ class ChessBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            width: '',
-            height: '',
-            open: false
+            open: false,
         }
         this.boardLayout  = (event) => this.boardRender(event, 'chess-board-layout');
         this.boardFullScreenLayout = (event) => this.boardRender(event, 'board-fullscreen-view');
         this.handleFullScreen = this.handleFullScreen.bind(this);
         this.boardRender = this.boardRender.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleBoardChange = this.handleBoardChange.bind(this);
+        this.ground = null
+    }
+
+    handleBoardChange() {
+        this.props.handleValidFEN(this.ground.getFen());
     }
 
     boardRender(event, boardMountID) {
@@ -35,7 +39,8 @@ class ChessBoard extends Component {
             coordinates: false,
             resizable: true,
         }
-        let ground = Chessground(elem, config);
+        this.ground = Chessground(elem, config); 
+        // var ground = Chessground(elem, config);
     }
 
     handleClose() {
@@ -64,6 +69,13 @@ class ChessBoard extends Component {
         window.addEventListener("resize", this.boardLayout);
     }
 
+    componentDidUpdate(prevProps) {
+        if(prevProps.fen!= this.props.fen) {
+            this.boardRender(null, 'chess-board-layout');
+        }
+
+    }
+
     componentWillUnmount() {
         window.removeEventListener("resize", this.boardFullScreenLayout);
         window.removeEventListener("resize", this.boardLayout);
@@ -88,7 +100,7 @@ class ChessBoard extends Component {
                             </Modal>
                         </div>
                     </div>
-                    <div id='chess-board-layout'>
+                    <div onClick={this.handleBoardChange} id='chess-board-layout'>
                     </div>
                 </div>
             </React.Fragment>

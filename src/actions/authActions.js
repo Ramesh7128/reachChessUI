@@ -1,5 +1,7 @@
 import axios from 'axios';
-import firebase from '../firebase';
+import firebase, { auth, provider } from '../firebase'
+import { resolve } from 'path';
+import { reject } from 'q';
 
 export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
@@ -33,6 +35,7 @@ export const authLogout = () => {
     }
 }
 
+
 export const authSignUp = (email, password, username) => {
     return function (dispatch) {
         dispatch(authStart());
@@ -63,12 +66,47 @@ export const authLogin = (email, password) => {
     }
 }
 
+export const googleAuthLogin = () => {
+    return function (dispatch) {
+        return new Promise(function (res, rej) {
+            dispatch(authStart());
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    console.log(result.user);
+                    console.log(result.user.displayName);
+                    dispatch(authSuccess(result.user));
+                    resolve();
+                })
+                .catch(error => {
+                    console.log(error.message);
+                    reject();
+                });
+        })
+    }
+}
+export const googleAuthLogout = () => {
+    return function (dispatch) {
+        auth.signOut()
+            .then(() => {
+                dispatch(authLogout());
+            });
+    }
+}
 
 export const initialAuth = () => {
-    return dispatch => {
-        firebase.auth().onAuthStateChanged((authenticated) => {
-            authenticated? dispatch(authSuccess(authenticated.user))
-                : dispatch(authLogout())
+    console.log('chelfjsljflsjfljlsfjlsjflj');
+    return function (dispatch) {
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                dispatch(authSuccess(user));
+            } else {
+                console.log('Failure');
+            }
         });
+        // auth.onAuthStateChanged((user) => {
+        //     if (user) {
+        //         console.log(user);
+        //     }
+        // });
     }
 }

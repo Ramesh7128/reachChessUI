@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { authLogout } from '../actions/authActions';
+import { authLogout, googleAuthLogout } from '../actions/authActions';
 import { withRouter } from 'react-router-dom';
 import { Dropdown } from 'semantic-ui-react'
 
@@ -14,7 +14,7 @@ class Login extends Component {
     }
 
     handleLogout(event) {
-        this.props.logout();
+        this.props.googleAuthLogout();
         this.props.history.push('/');
     }
     render() {
@@ -32,7 +32,7 @@ class Login extends Component {
                         </React.Fragment>
                         :
                         <div className='user-profile-dropdown'>
-                            <Dropdown text={this.props.authSuccess.username}>
+                            <Dropdown text={this.props.authSuccess.displayName}>
                                 <Dropdown.Menu>
                                     <Dropdown.Item text='Logout' onClick={this.handleLogout} />
                                     <Dropdown.Item text='Profile' onClick={this.handleLogout} />
@@ -57,7 +57,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        logout: () => dispatch(authLogout())
+        logout: () => dispatch(authLogout()),
+        googleAuthLogout: () => dispatch(googleAuthLogout())
     }
 }
 

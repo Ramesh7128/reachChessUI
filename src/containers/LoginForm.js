@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { authLogin, authLogout } from '../actions/authActions';
+import { authLogin, authLogout, googleAuthLogin } from '../actions/authActions';
 import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
 // import firebase from 'firebase';
-import firebase, { auth, provider } from './firebase.js';
-import firebaseui from 'firebaseui';
 
 
 
@@ -22,72 +20,41 @@ class LoginForm extends Component {
     }
 
     componentDidMount() {
-        var ui = new firebaseui.auth.AuthUI(firebase.auth());
-        var uiConfig = {
-            callbacks: {
-                signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-                    return true;
-                },
-                uiShown: function () {
-                    // The widget is rendered.
-                    // Hide the loader.
-                    document.getElementById('loader').style.display = 'none';
-                }
-            },
-            // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-            signInFlow: 'popup',
-            signInSuccessUrl: '<url-to-redirect-to-on-success>',
-            signInOptions: [
-                // Leave the lines as is for the providers you want to offer your users.
-                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-                firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-                firebase.auth.GithubAuthProvider.PROVIDER_ID,
-                firebase.auth.EmailAuthProvider.PROVIDER_ID,
-                firebase.auth.PhoneAuthProvider.PROVIDER_ID
-            ],
-            // Terms of service url.
-            tosUrl: '<your-tos-url>',
-            // Privacy policy url.
-            privacyPolicyUrl: '<your-privacy-policy-url>'
-        };
-
+        return
+        // var ui = new firebaseui.auth.AuthUI(firebase.auth());
+        // var uiConfig = {
+        //     callbacks: {
+        //         signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+        //             return true;
+        //         },
+        //         uiShown: function () {
+        //             // The widget is rendered.
+        //             // Hide the loader.
+        //             document.getElementById('loader').style.display = 'none';
+        //         }
+        //     },
+        //     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+        //     signInFlow: 'popup',
+        //     signInSuccessUrl: '<url-to-redirect-to-on-success>',
+        //     signInOptions: [
+        //         // Leave the lines as is for the providers you want to offer your users.
+        //         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        //         firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+        //         firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+        //         firebase.auth.GithubAuthProvider.PROVIDER_ID,
+        //         firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        //         firebase.auth.PhoneAuthProvider.PROVIDER_ID
+        //     ],
+        //     // Terms of service url.
+        //     tosUrl: '<your-tos-url>',
+        //     // Privacy policy url.
+        //     privacyPolicyUrl: '<your-privacy-policy-url>'
+        // };
     }
 
     handleGoogleSignIn() {
-        var ui = new firebaseui.auth.AuthUI(firebase.auth());
-        var uiConfig = {
-            callbacks: {
-                signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-                    // User successfully signed in.
-                    // Return type determines whether we continue the redirect automatically
-                    // or whether we leave that to developer to handle.
-                    return true;
-                },
-                uiShown: function () {
-                    // The widget is rendered.
-                    // Hide the loader.
-                    document.getElementById('loader').style.display = 'none';
-                }
-            },
-            // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-            signInFlow: 'popup',
-            signInSuccessUrl: '/home',
-            signInOptions: [
-                // Leave the lines as is for the providers you want to offer your users.
-                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-                firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-                firebase.auth.GithubAuthProvider.PROVIDER_ID,
-                firebase.auth.EmailAuthProvider.PROVIDER_ID,
-                firebase.auth.PhoneAuthProvider.PROVIDER_ID
-            ],
-            // Terms of service url.
-            tosUrl: '<your-tos-url>',
-            // Privacy policy url.
-            privacyPolicyUrl: '<your-privacy-policy-url>'
-        };
-        ui.start('#firebaseui-auth-container', uiConfig);
+        this.props.googleLoginAuth()
+            .then(this.props.history.push('/home'));
     }
 
     handleSubmit = event => {
@@ -143,7 +110,6 @@ class LoginForm extends Component {
                     <div id="firebaseui-auth-container">
                     </div>
                     <Button type='submit' onClick={this.handleGoogleSignIn}>Add Gsign</Button>
-                    {/* <div id="loader">Loading...</div>
                     <div className='signup-link'>
                         <Link to="/signup"><div>Signup</div></Link>
                     </div> */}
@@ -156,6 +122,7 @@ class LoginForm extends Component {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         LoginAuth: (email, password) => dispatch(authLogin(email, password)),
+        googleLoginAuth: () => dispatch(googleAuthLogin()),
         LogoutAuth: () => dispatch(authLogout())
     }
 }
